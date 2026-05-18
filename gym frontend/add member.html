@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Member — IronForge GMS</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+
+      <div class="page-header">
+        <div class="page-header-left">
+          <div class="breadcrumb">
+            <span>IronForge</span><span class="breadcrumb-sep">/</span>
+            <a href="members.html" style="color:var(--text-muted);">Members</a><span class="breadcrumb-sep">/</span>
+            <span>Add Member</span>
+          </div>
+          <h1 class="page-title">Add New Member</h1>
+          <p class="page-subtitle">Fill in the details below to enrol a new member</p>
+        </div>
+        <a href="members.html" class="btn btn-secondary">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+          Back to Members
+        </a>
+      </div>
+
+      <form id="addMemberForm" novalidate>
+        <!-- Personal Info -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Personal Information</div>
+              <div class="card-subtitle">Basic details about the member</div>
+            </div>
+            <div class="avatar avatar-emerald" style="width:36px;height:36px;font-size:13px;" id="previewInitials">?</div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="required-star">*</span></label>
+              <input type="text" id="fullName" class="form-input" placeholder="e.g. Arjun Reddy">
+              <div class="form-error hidden" id="fullNameErr">Name is required</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="required-star">*</span></label>
+              <div class="input-wrapper">
+                <span class="input-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg></span>
+                <input type="email" id="email" class="form-input" placeholder="member@email.com">
+              </div>
+              <div class="form-error hidden" id="emailErr">Enter a valid email</div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="required-star">*</span></label>
+              <div class="input-wrapper">
+                <span class="input-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg></span>
+                <input type="tel" id="phone" class="form-input" placeholder="9876543210">
+              </div>
+              <div class="form-error hidden" id="phoneErr">Enter a valid 10-digit number</div>
+            </div>
+            <div class="form-group">
+              <label for="age">Age <span class="required-star">*</span></label>
+              <input type="number" id="age" class="form-input" placeholder="e.g. 25" min="10" max="90">
+              <div class="form-error hidden" id="ageErr">Age must be between 10–90</div>
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender <span class="required-star">*</span></label>
+              <select id="gender" class="form-select">
+                <option value="">Select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+                <option>Prefer not to say</option>
+              </select>
+              <div class="form-error hidden" id="genderErr">Please select a gender</div>
+            </div>
+            <div class="form-group">
+              <label for="joinDate">Join Date <span class="required-star">*</span></label>
+              <input type="date" id="joinDate" class="form-input">
+            </div>
+            <div class="form-group full">
+              <label for="address">Address</label>
+              <textarea id="address" class="form-textarea" placeholder="Door No., Street, Area, City — Bengaluru, Karnataka"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Membership Info -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Membership Details</div>
+              <div class="card-subtitle">Plan and trainer assignment</div>
+            </div>
+          </div>
+
+          <!-- Plan selector cards -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;">
+            <label class="plan-selector" data-plan="Monthly" style="cursor:pointer;">
+              <input type="radio" name="plan" value="Monthly" style="display:none;">
+              <div class="plan-sel-card" id="planMonthly">
+                <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:6px;">Monthly</div>
+                <div style="font-size:22px;font-weight:800;color:var(--text-primary);">₹1,500</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">per month</div>
+              </div>
+            </label>
+            <label class="plan-selector" data-plan="Quarterly" style="cursor:pointer;">
+              <input type="radio" name="plan" value="Quarterly" style="display:none;">
+              <div class="plan-sel-card" id="planQuarterly">
+                <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:6px;">Quarterly</div>
+                <div style="font-size:22px;font-weight:800;color:var(--text-primary);">₹4,200</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">per 3 months</div>
+              </div>
+            </label>
+            <label class="plan-selector" data-plan="Annual" style="cursor:pointer;">
+              <input type="radio" name="plan" value="Annual" style="display:none;">
+              <div class="plan-sel-card" id="planAnnual">
+                <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:6px;">Annual ✦ Best Value</div>
+                <div style="font-size:22px;font-weight:800;color:var(--text-primary);">₹12,000</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">per year</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="trainer">Assigned Trainer</label>
+              <select id="trainer" class="form-select">
+                <option value="">No trainer assigned</option>
+                <option>Suresh Kumar — Strength & Conditioning</option>
+                <option>Anita Desai — Yoga & Flexibility</option>
+                <option>Rajesh Pillai — CrossFit & HIIT</option>
+                <option>Kavitha Rao — Zumba & Cardio</option>
+                <option>Mohan Singh — Bodybuilding</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="paymentMethod">Payment Method</label>
+              <select id="paymentMethod" class="form-select">
+                <option>Cash</option>
+                <option>UPI / GPay</option>
+                <option>Debit Card</option>
+                <option>Net Banking</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emergency Contact -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Emergency Contact</div>
+              <div class="card-subtitle">Optional — recommended for safety</div>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="ecName">Contact Name</label>
+              <input type="text" id="ecName" class="form-input" placeholder="Guardian / Family member">
+            </div>
+            <div class="form-group">
+              <label for="ecPhone">Contact Phone</label>
+              <input type="tel" id="ecPhone" class="form-input" placeholder="9876543210">
+            </div>
+            <div class="form-group">
+              <label for="ecRelation">Relation</label>
+              <select id="ecRelation" class="form-select">
+                <option value="">Select relation</option>
+                <option>Parent</option>
+                <option>Spouse</option>
+                <option>Sibling</option>
+                <option>Friend</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="medNotes">Medical Notes</label>
+              <input type="text" id="medNotes" class="form-input" placeholder="Any injuries, allergies, conditions...">
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+          <a href="members.html" class="btn btn-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Enrol Member
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+<script>
+buildSidebar('Add Member');
+
+// Set today as default join date
+document.getElementById('joinDate').value = new Date().toISOString().split('T')[0];
+
+// Preview initials
+document.getElementById('fullName').addEventListener('input', function() {
+  const parts = this.value.trim().split(' ').filter(Boolean);
+  const init = parts.map(p=>p[0]).join('').substring(0,2).toUpperCase() || '?';
+  document.getElementById('previewInitials').textContent = init;
+});
+
+// Plan card selection
+const planCards = {
+  Monthly:   document.getElementById('planMonthly'),
+  Quarterly: document.getElementById('planQuarterly'),
+  Annual:    document.getElementById('planAnnual'),
+};
+const baseStyle = 'background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;transition:all 0.18s ease;';
+const activeStyle = 'background:var(--accent-dim);border:1px solid var(--accent);border-radius:var(--radius-md);padding:16px;transition:all 0.18s ease;';
+
+Object.values(planCards).forEach(c => c.style.cssText = baseStyle);
+
+document.querySelectorAll('.plan-selector').forEach(sel => {
+  sel.addEventListener('click', () => {
+    Object.values(planCards).forEach(c => c.style.cssText = baseStyle);
+    planCards[sel.dataset.plan].style.cssText = activeStyle;
+  });
+});
+
+// Form validation & submit
+document.getElementById('addMemberForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+
+  function validate(id, errId, condition) {
+    const el = document.getElementById(id);
+    const err = document.getElementById(errId);
+    if (condition(el.value)) { el.classList.add('is-error'); err.classList.remove('hidden'); valid = false; }
+    else { el.classList.remove('is-error'); err.classList.add('hidden'); }
+  }
+
+  validate('fullName', 'fullNameErr', v => !v.trim());
+  validate('email',    'emailErr',    v => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+  validate('phone',    'phoneErr',    v => !/^\d{10}$/.test(v));
+  validate('age',      'ageErr',      v => !v || v < 10 || v > 90);
+  validate('gender',   'genderErr',   v => !v);
+
+  if (valid) {
+    showToast('Member Added!', 'New member enrolled successfully.', 'success');
+    setTimeout(() => window.location.href = 'members.html', 1200);
+  }
+});
+</script>
+</body>
+</html>

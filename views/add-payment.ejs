@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= payment ? 'Edit Payment' : 'Add Payment' %> - IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<%
+  const formPayment = payment || {};
+  const memberOptions = members || [];
+%>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1><%= payment ? 'Edit Payment' : 'Add Payment' %></h1>
+          <p>Record and manage member payment transactions.</p>
+        </div>
+      </section>
+      <section class="card">
+        <form class="form-grid" method="POST" action="<%= formAction || '/payments/add' %>">
+          <div class="form-group">
+            <label>Member</label>
+            <select class="select-dark" name="member_id" required>
+              <option value="">Select Member</option>
+              <% memberOptions.forEach((member) => { %>
+                <option value="<%= member.id %>" <%= Number(formPayment.member_id) === Number(member.id) ? 'selected' : '' %>><%= member.full_name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Amount</label>
+            <input class="input-dark" type="number" step="0.01" name="amount" value="<%= formPayment.amount || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Payment Method</label>
+            <select class="select-dark" name="payment_method">
+              <% ['cash','upi','card','net_banking','other'].forEach((method) => { %>
+                <option value="<%= method %>" <%= formPayment.payment_method === method ? 'selected' : '' %>><%= method %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Payment Status</label>
+            <select class="select-dark" name="payment_status">
+              <% ['paid','pending','overdue','refunded'].forEach((status) => { %>
+                <option value="<%= status %>" <%= formPayment.payment_status === status ? 'selected' : '' %>><%= status %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Payment Date</label>
+            <input class="input-dark" type="date" name="payment_date" value="<%= formPayment.payment_date ? String(formPayment.payment_date).slice(0,10) : '' %>">
+          </div>
+          <div class="form-group full">
+            <div class="table-actions">
+              <button class="btn btn-primary" type="submit"><%= submitLabel || 'Save Payment' %></button>
+              <a class="btn btn-ghost" href="/payments">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>buildSidebar('Payments');</script>
+</body>
+</html>

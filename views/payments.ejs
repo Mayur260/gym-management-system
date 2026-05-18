@@ -1,0 +1,99 @@
+<!-- EJS Template for Payments
+Updated path: views/payments.ejs
+Update all CSS/JS paths to use /css and /js prefixes 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments — IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1>Payments</h1>
+          <p>Track member payments and status.</p>
+        </div>
+        <a href="/payments/add" class="btn btn-primary">+ Add Payment</a>
+      </section>
+
+      <section class="card">
+        <div class="toolbar">
+          <div class="search-group">
+            <input class="input-dark" type="text" placeholder="Search payments..." />
+            <select class="select-dark">
+              <option>All Status</option>
+              <option>Paid</option>
+              <option>Pending</option>
+              <option>Overdue</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="table-wrap">
+        <table class="dashboard-table">
+          <thead>
+            <tr>
+              <th>Member Name</th>
+              <th>Amount</th>
+              <th>Method</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (payments && payments.length > 0) { %>
+              <% payments.forEach(payment => { %>
+                <% const status = (payment.payment_status || '').toLowerCase(); %>
+                <tr>
+                  <td><%= payment.full_name || 'Unknown Member' %></td>
+                  <td><%= payment.amount %></td>
+                  <td><%= payment.payment_method %></td>
+                  <td>
+                    <span class="status-badge <%= status === 'paid' ? 'badge-paid' : status === 'pending' ? 'badge-pending' : status === 'overdue' ? 'badge-overdue' : status === 'refunded' ? 'badge-refunded' : 'badge-neutral' %>">
+                      <%= payment.payment_status %>
+                    </span>
+                  </td>
+                  <td><%= payment.payment_date || '-' %></td>
+                  <td>
+                    <div class="table-actions">
+                      <a href="/payments/edit/<%= payment.id %>" class="btn btn-edit">Edit</a>
+                      <form action="/payments/delete/<%= payment.id %>" method="POST">
+                        <button type="submit" class="btn btn-delete">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr>
+                <td colspan="6">No payments found.</td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>
+buildSidebar('Payments');
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!-- EJS Template for Members
+Updated path: views/members.ejs
+Update all CSS/JS paths to use /css and /js prefixes 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members — IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1>Members</h1>
+          <p>Manage all registered gym members.</p>
+        </div>
+        <a href="/members/add" class="btn btn-primary">+ Add Member</a>
+      </section>
+
+      <section class="card">
+        <div class="toolbar">
+          <div class="search-group">
+            <input class="input-dark" type="text" placeholder="Search members..." />
+            <select class="select-dark">
+              <option>All Status</option>
+              <option>Active</option>
+              <option>Expiring</option>
+              <option>Expired</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="table-wrap">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (members && members.length > 0) { %>
+                <% members.forEach(member => { %>
+                  <% const status = (member.membership_status || '').toLowerCase(); %>
+                  <tr>
+                    <td><%= member.full_name %></td>
+                    <td><%= member.age ?? '-' %></td>
+                    <td><%= member.gender || '-' %></td>
+                    <td><%= member.phone || '-' %></td>
+                    <td><%= member.email || '-' %></td>
+                    <td>
+                      <span class="status-badge <%= status === 'active' ? 'badge-active' : status === 'expiring' ? 'badge-expiring' : status === 'expired' ? 'badge-expired' : status === 'suspended' ? 'badge-suspended' : 'badge-neutral' %>">
+                        <%= member.membership_status || '-' %>
+                      </span>
+                    </td>
+                    <td>
+                      <div class="table-actions">
+                        <a href="/members/edit/<%= member.id %>" class="btn btn-edit">Edit</a>
+                        <form action="/members/delete/<%= member.id %>" method="POST">
+                          <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="7">No members found.</td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>
+buildSidebar('Members');
+</script>
+</body>
+</html>

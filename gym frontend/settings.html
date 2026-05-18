@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — IronForge GMS</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+
+      <div class="page-header">
+        <div class="page-header-left">
+          <div class="breadcrumb"><span>IronForge</span><span class="breadcrumb-sep">/</span><span>Settings</span></div>
+          <h1 class="page-title">Settings</h1>
+          <p class="page-subtitle">Manage your profile, security, and preferences</p>
+        </div>
+      </div>
+
+      <div class="settings-layout">
+        <!-- Side Nav -->
+        <nav class="settings-nav">
+          <div class="settings-nav-item active" data-tab="profile">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+            Profile
+          </div>
+          <div class="settings-nav-item" data-tab="security">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+            Security
+          </div>
+          <div class="settings-nav-item" data-tab="notifications">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg>
+            Notifications
+          </div>
+          <div class="settings-nav-item" data-tab="gym">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/></svg>
+            Gym Info
+          </div>
+          <div class="settings-nav-item" data-tab="appearance">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486z"/></svg>
+            Appearance
+          </div>
+        </nav>
+
+        <!-- Sections -->
+        <div>
+
+          <!-- Profile -->
+          <div class="settings-section active" data-tab="profile">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-title">Profile Information</div>
+                <div class="settings-card-desc">Update your name, email, and profile photo</div>
+              </div>
+              <div class="settings-card-body">
+                <div class="avatar-upload">
+                  <div class="avatar-upload-preview" id="avatarPreview">AR</div>
+                  <div class="avatar-upload-info">
+                    <div class="avatar-upload-title">Profile Photo</div>
+                    <div class="avatar-upload-hint">JPG, PNG or GIF. Max size 2MB.</div>
+                    <label class="btn btn-secondary btn-sm" style="cursor:pointer;display:inline-flex;">
+                      <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+                      Upload Photo
+                      <input type="file" accept="image/*" style="display:none;" id="avatarInput">
+                    </label>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group"><label>First Name</label><input type="text" class="form-input" value="Admin"></div>
+                  <div class="form-group"><label>Last Name</label><input type="text" class="form-input" value="Ravi"></div>
+                  <div class="form-group"><label>Email Address</label><input type="email" class="form-input" value="admin@ironforge.com"></div>
+                  <div class="form-group"><label>Phone Number</label><input type="tel" class="form-input" value="9876543210"></div>
+                  <div class="form-group"><label>Role</label><input type="text" class="form-input" value="Super Admin" readonly style="opacity:0.6;cursor:not-allowed;"></div>
+                  <div class="form-group"><label>Timezone</label>
+                    <select class="form-select">
+                      <option selected>Asia/Kolkata (IST, UTC+5:30)</option>
+                      <option>UTC</option><option>America/New_York</option>
+                    </select>
+                  </div>
+                  <div class="form-group full"><label>Bio</label>
+                    <textarea class="form-textarea" placeholder="A short description about yourself...">Gym admin and fitness enthusiast managing IronForge since 2022.</textarea>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:flex-end;margin-top:20px;">
+                  <button class="btn btn-primary" onclick="showToast('Profile Updated','Your changes have been saved.')">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="settings-section" data-tab="security">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-title">Change Password</div>
+                <div class="settings-card-desc">Use a strong password you don't use elsewhere</div>
+              </div>
+              <div class="settings-card-body">
+                <div class="form-grid single" style="max-width:420px;">
+                  <div class="form-group">
+                    <label>Current Password</label>
+                    <div class="input-wrapper">
+                      <span class="input-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg></span>
+                      <input type="password" class="form-input" placeholder="Current password">
+                      <button type="button" class="input-toggle"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg></button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>New Password</label>
+                    <div class="input-wrapper">
+                      <span class="input-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg></span>
+                      <input type="password" id="newPass" class="form-input" placeholder="Min 8 characters">
+                      <button type="button" class="input-toggle"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg></button>
+                    </div>
+                    <div id="passStrength" style="margin-top:6px;font-size:11px;color:var(--text-muted);"></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <div class="input-wrapper">
+                      <span class="input-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg></span>
+                      <input type="password" class="form-input" placeholder="Repeat new password">
+                      <button type="button" class="input-toggle"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg></button>
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:flex-end;margin-top:20px;">
+                  <button class="btn btn-primary" onclick="showToast('Password Changed','Your password has been updated.')">Update Password</button>
+                </div>
+              </div>
+            </div>
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-title">Two-Factor Authentication</div>
+                <div class="settings-card-desc">Add an extra layer of security to your account</div>
+              </div>
+              <div class="settings-card-body">
+                <div class="toggle-row">
+                  <div><div class="toggle-label">Enable 2FA via Authenticator App</div><div class="toggle-desc">Use Google Authenticator or Authy to generate OTPs</div></div>
+                  <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div><div class="toggle-label">Login Notifications via Email</div><div class="toggle-desc">Receive an email on every new login</div></div>
+                  <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="settings-section" data-tab="notifications">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-title">Email Notifications</div>
+                <div class="settings-card-desc">Choose which events trigger email alerts</div>
+              </div>
+              <div class="settings-card-body">
+                <div class="toggle-row"><div><div class="toggle-label">New Member Enrollment</div><div class="toggle-desc">When a new member joins the gym</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="toggle-row"><div><div class="toggle-label">Payment Received</div><div class="toggle-desc">When a payment is successfully processed</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="toggle-row"><div><div class="toggle-label">Membership Expiry Reminders</div><div class="toggle-desc">7 days and 1 day before expiry</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="toggle-row"><div><div class="toggle-label">Overdue Payment Alerts</div><div class="toggle-desc">When a payment becomes overdue</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                <div class="toggle-row"><div><div class="toggle-label">Daily Attendance Summary</div><div class="toggle-desc">End-of-day attendance report via email</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                <div class="toggle-row"><div><div class="toggle-label">Monthly Revenue Report</div><div class="toggle-desc">Automated monthly financial summary</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+              </div>
+            </div>
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-title">In-App Notifications</div>
+                <div class="settings-card-desc">Control dashboard and browser notifications</div>
+              </div>
+              <div class="settings-card-body">
+                <div class="toggle-row"><div><div class="toggle-label">Browser Push Notifications</div><div class="toggle-desc">Show desktop alerts for important events</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="toggle-row"><div><div class="toggle-label">Sound Alerts</div><div class="toggle-desc">Play a chime on new notifications</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;">
+              <button class="btn btn-primary" onclick="showToast('Preferences Saved','Notification settings updated.')">Save Preferences</button>
+            </div>
+          </div>
+
+          <!-- Gym Info -->
+          <div class="settings-section" data-tab="gym">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-title">Gym Information</div>
+                <div class="settings-card-desc">Business details used across invoices and communications</div>
+              </div>
+              <div class="settings-card-body">
+                <div class="form-grid">
+                  <div class="form-group full"><label>Gym Name</label><input type="text" class="form-input" value="IronForge Fitness Center"></div>
+                  <div class="form-group"><label>Phone</label><input type="tel" class="form-input" value="+91 80 4567 8901"></div>
+                  <div class="form-group"><label>Email</label><input type="email" class="form-input" value="info@ironforge.com"></div>
+                  <div class="form-group"><label>GST Number</label><input type="text" class="form-input" placeholder="29AABCT1332L1ZT" value="29AABIF1234K1Z5"></div>
+                  <div class="form-group"><label>Opening Time</label><input type="time" class="form-input" value="05:30"></div>
+                  <div class="form-group"><label>Closing Time</label><input type="time" class="form-input" value="22:00"></div>
+                  <div class="form-group full"><label>Address</label><textarea class="form-textarea">No. 14, Outer Ring Road, Marathahalli, Bengaluru, Karnataka - 560037</textarea></div>
+                </div>
+                <div style="display:flex;justify-content:flex-end;margin-top:20px;">
+                  <button class="btn btn-primary" onclick="showToast('Gym Info Saved','Business details have been updated.')">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appearance -->
+          <div class="settings-section" data-tab="appearance">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-title">Appearance</div>
+                <div class="settings-card-desc">Customize the look of your dashboard</div>
+              </div>
+              <div class="settings-card-body">
+                <div class="form-group mb-4">
+                  <label>Theme</label>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;">
+                    <div style="border:2px solid var(--accent);border-radius:var(--radius-md);padding:14px;cursor:pointer;text-align:center;">
+                      <div style="width:100%;height:36px;background:var(--bg-base);border-radius:4px;margin-bottom:8px;border:1px solid var(--border);"></div>
+                      <div style="font-size:12px;font-weight:600;color:var(--accent);">Dark (Active)</div>
+                    </div>
+                    <div style="border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;cursor:pointer;text-align:center;opacity:0.6;" onclick="showToast('Coming Soon','Light theme will be available soon.')">
+                      <div style="width:100%;height:36px;background:#F9FAFB;border-radius:4px;margin-bottom:8px;border:1px solid #E5E7EB;"></div>
+                      <div style="font-size:12px;font-weight:600;color:var(--text-muted);">Light</div>
+                    </div>
+                    <div style="border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;cursor:pointer;text-align:center;opacity:0.6;" onclick="showToast('Coming Soon','System theme sync coming soon.')">
+                      <div style="width:100%;height:36px;background:linear-gradient(90deg,#0F1623 50%,#F9FAFB 50%);border-radius:4px;margin-bottom:8px;border:1px solid var(--border);"></div>
+                      <div style="font-size:12px;font-weight:600;color:var(--text-muted);">System</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="toggle-row"><div><div class="toggle-label">Compact Sidebar</div><div class="toggle-desc">Use icon-only sidebar to save screen space</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                <div class="toggle-row"><div><div class="toggle-label">Reduce Animations</div><div class="toggle-desc">Disable hover and transition effects</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+<script>
+buildSidebar('Settings');
+initPasswordToggle();
+
+// Avatar preview
+document.getElementById('avatarInput').addEventListener('change', function() {
+  var file = this.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var prev = document.getElementById('avatarPreview');
+    prev.innerHTML = '<img src="' + e.target.result + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+  };
+  reader.readAsDataURL(file);
+});
+
+// Password strength
+document.getElementById('newPass').addEventListener('input', function() {
+  var v = this.value;
+  var strength = document.getElementById('passStrength');
+  if (!v) { strength.textContent = ''; return; }
+  if (v.length < 6) { strength.textContent = 'Weak — too short'; strength.style.color = 'var(--danger)'; }
+  else if (v.length < 10 || !/[A-Z]/.test(v) || !/[0-9]/.test(v)) { strength.textContent = 'Fair — add uppercase and numbers'; strength.style.color = 'var(--warning)'; }
+  else { strength.textContent = 'Strong password'; strength.style.color = 'var(--accent)'; }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!-- EJS Template for Add Member
+Updated path: views/add-member.ejs
+Update all CSS/JS paths to use /css and /js prefixes 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Member — IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<%
+  const formMember = member || {};
+  const plans = membershipPlans || [];
+  const trainerOptions = trainers || [];
+%>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1><%= member ? 'Edit Member' : 'Add Member' %></h1>
+          <p><%= member ? 'Update member profile information.' : 'Create a new member profile.' %></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <form class="form-grid" method="POST" action="<%= formAction || '/members/add' %>">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input class="input-dark" type="text" name="full_name" value="<%= formMember.full_name || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Age</label>
+            <input class="input-dark" type="number" name="age" value="<%= formMember.age || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Gender</label>
+            <select class="select-dark" name="gender">
+              <option value="">Select Gender</option>
+              <option value="male" <%= formMember.gender === 'male' ? 'selected' : '' %>>Male</option>
+              <option value="female" <%= formMember.gender === 'female' ? 'selected' : '' %>>Female</option>
+              <option value="other" <%= formMember.gender === 'other' ? 'selected' : '' %>>Other</option>
+              <option value="prefer_not_to_say" <%= formMember.gender === 'prefer_not_to_say' ? 'selected' : '' %>>Prefer Not To Say</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input class="input-dark" type="text" name="phone" value="<%= formMember.phone || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="input-dark" type="email" name="email" value="<%= formMember.email || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Membership Status</label>
+            <select class="select-dark" name="membership_status">
+              <option value="active" <%= formMember.membership_status === 'active' ? 'selected' : '' %>>Active</option>
+              <option value="expiring" <%= formMember.membership_status === 'expiring' ? 'selected' : '' %>>Expiring</option>
+              <option value="expired" <%= formMember.membership_status === 'expired' ? 'selected' : '' %>>Expired</option>
+              <option value="suspended" <%= formMember.membership_status === 'suspended' ? 'selected' : '' %>>Suspended</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Membership Plan</label>
+            <select class="select-dark" name="membership_plan_id">
+              <option value="">Select Plan</option>
+              <% plans.forEach((plan) => { %>
+                <option value="<%= plan.id %>" <%= Number(formMember.membership_plan_id) === Number(plan.id) ? 'selected' : '' %>><%= plan.plan_name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Trainer</label>
+            <select class="select-dark" name="trainer_id">
+              <option value="">Select Trainer</option>
+              <% trainerOptions.forEach((trainer) => { %>
+                <option value="<%= trainer.id %>" <%= Number(formMember.trainer_id) === Number(trainer.id) ? 'selected' : '' %>><%= trainer.trainer_name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Address</label>
+            <textarea class="textarea-dark" rows="3" name="address"><%= formMember.address || '' %></textarea>
+          </div>
+          <div class="form-group full">
+            <div class="table-actions">
+              <button type="submit" class="btn btn-primary"><%= submitLabel || 'Save Member' %></button>
+              <a href="/members" class="btn btn-ghost">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>
+buildSidebar('Add Member');
+</script>
+</body>
+</html>

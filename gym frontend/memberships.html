@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memberships — IronForge GMS</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+
+      <div class="page-header">
+        <div class="page-header-left">
+          <div class="breadcrumb"><span>IronForge</span><span class="breadcrumb-sep">/</span><span>Memberships</span></div>
+          <h1 class="page-title">Membership Plans</h1>
+          <p class="page-subtitle">Manage plans, pricing, and subscriber counts</p>
+        </div>
+        <button class="btn btn-primary" data-modal-open="editPlanModal">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+          Edit Plans
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid" style="margin-bottom:28px;">
+        <div class="stat-card">
+          <div class="stat-icon emerald"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">Total Active</div>
+            <div class="stat-value">104</div>
+            <div class="stat-change up">↑ 8 this month</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">Monthly Revenue</div>
+            <div class="stat-value">₹2.4L</div>
+            <div class="stat-change up">↑ 18% vs last</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">Expiring in 7 days</div>
+            <div class="stat-value">9</div>
+            <div class="stat-change down">↓ action needed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">Expired</div>
+            <div class="stat-value">24</div>
+            <div class="stat-change down">↓ renewal pending</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plan Cards -->
+      <div class="section">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div>
+            <div style="font-size:15px;font-weight:700;color:var(--text-primary);">Current Plans</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Active pricing tiers available to members</div>
+          </div>
+        </div>
+        <div class="plan-grid">
+          <!-- Monthly -->
+          <div class="plan-card">
+            <div class="plan-name">Monthly</div>
+            <div class="plan-price">₹1,500 <span>/ month</span></div>
+            <div class="plan-features">
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full gym access</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Group classes</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Locker access</div>
+              <div class="plan-feature" style="opacity:0.4;"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Personal trainer</div>
+              <div class="plan-feature" style="opacity:0.4;"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Diet consultation</div>
+            </div>
+            <div class="plan-subscribers">
+              <span><strong>21</strong> active subscribers</span>
+              <button class="btn btn-secondary btn-sm">Manage</button>
+            </div>
+          </div>
+
+          <!-- Quarterly (Featured) -->
+          <div class="plan-card featured">
+            <div class="plan-badge-featured">Popular</div>
+            <div class="plan-name" style="color:var(--accent);">Quarterly</div>
+            <div class="plan-price">₹4,200 <span>/ 3 months</span></div>
+            <div style="font-size:11px;color:var(--accent);font-weight:600;margin-bottom:14px;">Save ₹300 vs monthly</div>
+            <div class="plan-features">
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full gym access</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Group classes</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Locker access</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>1 trainer session/month</div>
+              <div class="plan-feature" style="opacity:0.4;"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Diet consultation</div>
+            </div>
+            <div class="plan-subscribers">
+              <span><strong>31</strong> active subscribers</span>
+              <button class="btn btn-primary btn-sm">Manage</button>
+            </div>
+          </div>
+
+          <!-- Annual -->
+          <div class="plan-card">
+            <div class="plan-name">Annual</div>
+            <div class="plan-price">₹12,000 <span>/ year</span></div>
+            <div style="font-size:11px;color:var(--text-muted);font-weight:600;margin-bottom:14px;">₹1,000/month — Save ₹6,000</div>
+            <div class="plan-features">
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full gym access</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Unlimited group classes</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Locker + towel service</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>4 trainer sessions/month</div>
+              <div class="plan-feature"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Diet & nutrition plan</div>
+            </div>
+            <div class="plan-subscribers">
+              <span><strong>52</strong> active subscribers</span>
+              <button class="btn btn-secondary btn-sm">Manage</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expiring Soon Table -->
+      <div class="section mt-5">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div>
+            <div style="font-size:15px;font-weight:700;color:var(--text-primary);">Expiring Soon</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Members whose memberships expire within 14 days</div>
+          </div>
+          <button class="btn btn-secondary btn-sm">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            Send Reminders
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Plan</th>
+                <th>Expiry Date</th>
+                <th>Days Left</th>
+                <th>Amount Due</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-blue" style="width:30px;height:30px;font-size:10px;">PM</div>Priya Mehta</div></td>
+                <td><span class="badge badge-blue">Monthly</span></td>
+                <td class="font-mono" style="font-size:12px;">2025-05-15</td>
+                <td><span class="badge badge-red">2 days</span></td>
+                <td class="font-mono" style="color:var(--text-primary);font-weight:600;">₹1,500</td>
+                <td><button class="btn btn-primary btn-sm" onclick="showToast('Renewal Initiated','Payment link sent to Priya Mehta')">Renew</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-amber" style="width:30px;height:30px;font-size:10px;">RV</div>Ravi Varma</div></td>
+                <td><span class="badge badge-blue">Annual</span></td>
+                <td class="font-mono" style="font-size:12px;">2025-05-20</td>
+                <td><span class="badge badge-amber">7 days</span></td>
+                <td class="font-mono" style="color:var(--text-primary);font-weight:600;">₹12,000</td>
+                <td><button class="btn btn-primary btn-sm" onclick="showToast('Renewal Initiated','Payment link sent to Ravi Varma')">Renew</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-emerald" style="width:30px;height:30px;font-size:10px;">AN</div>Anil Sharma</div></td>
+                <td><span class="badge badge-blue">Monthly</span></td>
+                <td class="font-mono" style="font-size:12px;">2025-05-20</td>
+                <td><span class="badge badge-amber">7 days</span></td>
+                <td class="font-mono" style="color:var(--text-primary);font-weight:600;">₹1,500</td>
+                <td><button class="btn btn-primary btn-sm" onclick="showToast('Renewal Initiated','Payment link sent to Anil Sharma')">Renew</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-red" style="width:30px;height:30px;font-size:10px;">LN</div>Lakshmi Naidu</div></td>
+                <td><span class="badge badge-blue">Quarterly</span></td>
+                <td class="font-mono" style="font-size:12px;">2025-05-15</td>
+                <td><span class="badge badge-red">2 days</span></td>
+                <td class="font-mono" style="color:var(--text-primary);font-weight:600;">₹4,200</td>
+                <td><button class="btn btn-primary btn-sm" onclick="showToast('Renewal Initiated','Payment link sent to Lakshmi Naidu')">Renew</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-purple" style="width:30px;height:30px;font-size:10px;">DV</div>Deepak Verma</div></td>
+                <td><span class="badge badge-blue">Monthly</span></td>
+                <td class="font-mono" style="font-size:12px;">2025-05-24</td>
+                <td><span class="badge badge-amber">11 days</span></td>
+                <td class="font-mono" style="color:var(--text-primary);font-weight:600;">₹1,500</td>
+                <td><button class="btn btn-primary btn-sm" onclick="showToast('Renewal Initiated','Payment link sent to Deepak Verma')">Renew</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Plan Comparison -->
+      <div class="section mt-5">
+        <div style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:16px;">Feature Comparison</div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th style="text-align:center;">Monthly</th>
+                <th style="text-align:center;color:var(--accent);">Quarterly ✦</th>
+                <th style="text-align:center;">Annual</th>
+              </tr>
+            </thead>
+            <tbody id="compTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Edit Plan Modal -->
+<div class="modal-overlay" id="editPlanModal">
+  <div class="modal" style="max-width:440px;">
+    <div class="modal-header">
+      <span class="modal-title">Edit Plan Pricing</span>
+      <button class="modal-close" data-modal-close="editPlanModal"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label>Monthly Price (₹)</label><input type="number" class="form-input" value="1500"></div>
+        <div class="form-group"><label>Quarterly Price (₹)</label><input type="number" class="form-input" value="4200"></div>
+        <div class="form-group full"><label>Annual Price (₹)</label><input type="number" class="form-input" value="12000"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="editPlanModal">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('editPlanModal');showToast('Plans Updated','Pricing saved successfully.')">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+<script>
+buildSidebar('Memberships');
+
+const features = [
+  ['Full Gym Access', true, true, true],
+  ['Group Classes', true, true, true],
+  ['Locker Access', true, true, true],
+  ['Towel Service', false, false, true],
+  ['Personal Trainer Sessions', false, '1/month', '4/month'],
+  ['Diet & Nutrition Plan', false, false, true],
+  ['Guest Pass (1/month)', false, false, true],
+  ['Priority Equipment Booking', false, true, true],
+];
+
+const tick  = `<svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" style="color:var(--accent);"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
+const cross = `<svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" style="color:var(--text-muted);opacity:0.35;"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>`;
+
+function cellVal(v) {
+  if (v === true) return `<td style="text-align:center;">${tick}</td>`;
+  if (v === false) return `<td style="text-align:center;">${cross}</td>`;
+  return `<td style="text-align:center;font-size:12px;color:var(--accent);font-weight:600;">${v}</td>`;
+}
+
+document.getElementById('compTable').innerHTML = features.map(([feat, m, q, a]) => `
+  <tr>
+    <td style="font-weight:500;color:var(--text-primary);">${feat}</td>
+    ${cellVal(m)}${cellVal(q)}${cellVal(a)}
+  </tr>
+`).join('');
+</script>
+</body>
+</html>

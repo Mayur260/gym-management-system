@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trainers — IronForge GMS</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+
+      <div class="page-header">
+        <div class="page-header-left">
+          <div class="breadcrumb"><span>IronForge</span><span class="breadcrumb-sep">/</span><span>Trainers</span></div>
+          <h1 class="page-title">Trainers</h1>
+          <p class="page-subtitle">8 certified trainers on staff</p>
+        </div>
+        <button class="btn btn-primary" data-modal-open="addTrainerModal">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+          Add Trainer
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px;">
+        <div class="stat-card"><div class="stat-icon emerald"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg></div><div class="stat-body"><div class="stat-label">Total Trainers</div><div class="stat-value">8</div></div></div>
+        <div class="stat-card"><div class="stat-icon blue"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div><div class="stat-body"><div class="stat-label">Active</div><div class="stat-value">7</div></div></div>
+        <div class="stat-card"><div class="stat-icon amber"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg></div><div class="stat-body"><div class="stat-label">Members Assigned</div><div class="stat-value">128</div></div></div>
+        <div class="stat-card"><div class="stat-icon red"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div><div class="stat-body"><div class="stat-label">Certifications</div><div class="stat-value">22</div></div></div>
+      </div>
+
+      <!-- Trainer Grid -->
+      <div class="trainer-grid" id="trainerGrid"></div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Add Trainer Modal -->
+<div class="modal-overlay" id="addTrainerModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Add New Trainer</span>
+      <button class="modal-close" data-modal-close="addTrainerModal"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label>Full Name</label><input type="text" class="form-input" placeholder="Trainer name"></div>
+        <div class="form-group"><label>Phone</label><input type="tel" class="form-input" placeholder="9876543210"></div>
+        <div class="form-group"><label>Email</label><input type="email" class="form-input" placeholder="trainer@gym.com"></div>
+        <div class="form-group"><label>Specialization</label><select class="form-select"><option>Strength & Conditioning</option><option>Yoga & Flexibility</option><option>CrossFit & HIIT</option><option>Zumba & Cardio</option><option>Bodybuilding</option><option>Martial Arts</option></select></div>
+        <div class="form-group"><label>Experience (years)</label><input type="number" class="form-input" placeholder="e.g. 5"></div>
+        <div class="form-group"><label>Salary (₹/month)</label><input type="number" class="form-input" placeholder="e.g. 35000"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="addTrainerModal">Cancel</button>
+      <button class="btn btn-primary" onclick="addTrainer()">Add Trainer</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+<script>
+buildSidebar('Trainers');
+
+const trainers = [
+  { name:'Suresh Kumar',   spec:'Strength & Conditioning', phone:'9876543210', email:'suresh@ironforge.com', members:28, exp:8,  certs:4, status:'Active',  color:'avatar-emerald' },
+  { name:'Anita Desai',    spec:'Yoga & Flexibility',      phone:'9812345678', email:'anita@ironforge.com',  members:22, exp:6,  certs:3, status:'Active',  color:'avatar-blue' },
+  { name:'Rajesh Pillai',  spec:'CrossFit & HIIT',         phone:'9823456789', email:'rajesh@ironforge.com', members:25, exp:9,  certs:4, status:'Active',  color:'avatar-amber' },
+  { name:'Kavitha Rao',    spec:'Zumba & Cardio',          phone:'9834567890', email:'kavitha@ironforge.com',members:20, exp:5,  certs:2, status:'Active',  color:'avatar-red' },
+  { name:'Mohan Singh',    spec:'Bodybuilding',             phone:'9845678901', email:'mohan@ironforge.com',  members:18, exp:11, certs:5, status:'Active',  color:'avatar-purple' },
+  { name:'Deepa Nair',     spec:'Aerobics & Dance',        phone:'9856789012', email:'deepa@ironforge.com',  members:15, exp:4,  certs:2, status:'Active',  color:'avatar-emerald' },
+  { name:'Vikram Joshi',   spec:'Martial Arts & MMA',      phone:'9867890123', email:'vikram@ironforge.com', members:0,  exp:7,  certs:3, status:'On Leave',color:'avatar-blue' },
+  { name:'Pooja Sharma',   spec:'Pilates & Core Training', phone:'9878901234', email:'pooja@ironforge.com',  members:0,  exp:3,  certs:2, status:'Active',  color:'avatar-amber' },
+];
+
+function inits(n) { return n.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase(); }
+
+const grid = document.getElementById('trainerGrid');
+grid.innerHTML = trainers.map((t,i) => `
+  <div class="trainer-card">
+    <div class="trainer-avatar ${t.color}" style="border-color:var(--border);">${inits(t.name)}</div>
+    <div class="trainer-name">${t.name}</div>
+    <div class="trainer-spec">${t.spec}</div>
+    <span class="badge ${t.status === 'Active' ? 'badge-green' : 'badge-amber'}">${t.status}</span>
+    <div class="trainer-meta">
+      <div class="trainer-meta-item"><div class="trainer-meta-value">${t.members}</div><div class="trainer-meta-label">Members</div></div>
+      <div class="trainer-meta-item"><div class="trainer-meta-value">${t.exp}y</div><div class="trainer-meta-label">Experience</div></div>
+      <div class="trainer-meta-item"><div class="trainer-meta-value">${t.certs}</div><div class="trainer-meta-label">Certs</div></div>
+    </div>
+    <div class="trainer-contact">${t.phone}</div>
+    <div class="trainer-contact" style="font-size:11px;color:var(--text-muted);">${t.email}</div>
+    <div class="trainer-actions">
+      <button class="btn btn-secondary btn-sm">View</button>
+      <button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="this.closest('.trainer-card').style.opacity='0.4'">Remove</button>
+    </div>
+  </div>
+`).join('');
+
+function addTrainer() {
+  closeModal('addTrainerModal');
+  showToast('Trainer Added', 'New trainer has been registered.');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= attendance ? 'Edit Attendance' : 'Add Attendance' %> - IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<%
+  const formAttendance = attendance || {};
+  const memberOptions = members || [];
+%>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1><%= attendance ? 'Edit Attendance' : 'Add Attendance' %></h1>
+          <p>Record member check-in and check-out status.</p>
+        </div>
+      </section>
+      <section class="card">
+        <form class="form-grid" method="POST" action="<%= formAction || '/attendance/add' %>">
+          <div class="form-group">
+            <label>Member</label>
+            <select class="select-dark" name="member_id" required>
+              <option value="">Select Member</option>
+              <% memberOptions.forEach((member) => { %>
+                <option value="<%= member.id %>" <%= Number(formAttendance.member_id) === Number(member.id) ? 'selected' : '' %>><%= member.full_name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Attendance Date</label>
+            <input class="input-dark" type="date" name="attendance_date" value="<%= formAttendance.attendance_date ? String(formAttendance.attendance_date).slice(0,10) : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Check-in Time</label>
+            <input class="input-dark" type="time" name="check_in_time" value="<%= formAttendance.check_in_time ? String(formAttendance.check_in_time).slice(0,5) : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Check-out Time</label>
+            <input class="input-dark" type="time" name="check_out_time" value="<%= formAttendance.check_out_time ? String(formAttendance.check_out_time).slice(0,5) : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select class="select-dark" name="status">
+              <% ['present','absent','late'].forEach((status) => { %>
+                <option value="<%= status %>" <%= formAttendance.status === status ? 'selected' : '' %>><%= status %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="form-group full">
+            <div class="table-actions">
+              <button class="btn btn-primary" type="submit"><%= submitLabel || 'Save Attendance' %></button>
+              <a class="btn btn-ghost" href="/attendance">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>buildSidebar('Attendance');</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <style>
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-base); }
+
+    .login-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .login-left {
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+    }
+
+    .login-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      align-self: flex-start;
+    }
+
+    .login-logo-icon {
+      width: 38px; height: 38px;
+      background: var(--accent);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .login-logo-icon svg { width: 22px; height: 22px; }
+
+    .login-brand-text { font-size: 18px; font-weight: 800; color: var(--text-primary); }
+    .login-brand-sub  { font-size: 11px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .login-form-wrapper { width: 100%; max-width: 380px; }
+
+    .login-heading {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .login-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .form-group-login { margin-bottom: 18px; }
+
+    .remember-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: 15px; height: 15px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+
+    .forgot-link:hover { color: var(--accent-hover); }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 3px 12px rgba(16,185,129,0.3);
+    }
+
+    .btn-login:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(16,185,129,0.4);
+    }
+
+    .btn-login:active { transform: translateY(0); }
+
+    .login-footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .validation-msg {
+      font-size: 11px;
+      color: var(--danger);
+      margin-top: 5px;
+      display: none;
+    }
+
+    .validation-msg.show { display: block; }
+
+    /* Right panel */
+    .login-right {
+      background: var(--bg-elevated);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-right::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -50px;
+      right: -50px;
+    }
+
+    .login-illustration {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 320px;
+    }
+
+    .login-illustration svg {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 32px;
+      filter: drop-shadow(0 8px 16px rgba(16, 185, 129, 0.15));
+    }
+
+    .login-ill-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .login-ill-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+<div class="login-wrapper">
+  <div class="login-left">
+    <div class="login-brand">
+      <div class="login-logo-icon">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="login-brand-text">IronForge</div>
+        <div class="login-brand-sub">Gym Management System</div>
+      </div>
+    </div>
+
+    <div class="login-form-wrapper">
+      <h2 class="login-heading">Welcome Back</h2>
+      <p class="login-sub">Sign in to your account to continue</p>
+
+      <% if (errorMessages && errorMessages.length) { %>
+        <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #dc2626;">
+          <%= errorMessages[0] %>
+        </div>
+      <% } %>
+
+      <% if (successMessages && successMessages.length) { %>
+        <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #16a34a;">
+          <%= successMessages[0] %>
+        </div>
+      <% } %>
+
+      <form id="loginForm" method="POST" action="/login" novalidate>
+        <div class="form-group-login">
+          <label for="loginEmail" style="display:block;margin-bottom:7px;font-size:12px;font-weight:600;color:var(--text-secondary);">Email or Username</label>
+          <div style="position:relative;">
+            <svg viewBox="0 0 20 20" fill="currentColor" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--text-muted);"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            <input type="text" id="loginEmail" name="email" class="form-input" placeholder="admin@ironforge.com" style="padding-left:40px;">
+          </div>
+        </div>
+
+        <div class="form-group-login">
+          <label for="loginPass" style="display:block;margin-bottom:7px;font-size:12px;font-weight:600;color:var(--text-secondary);">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg></span>
+            <input type="password" id="loginPass" name="password" class="form-input" placeholder="Enter your password">
+            <button type="button" class="input-toggle"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg></button>
+          </div>
+        </div>
+
+        <div class="remember-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="rememberMe" checked>
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-login">
+          Sign In
+        </button>
+
+        <div class="login-footer">
+          Don't have an account? <a href="#" style="color:var(--accent);font-weight:600;">Create one</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <div class="login-illustration">
+      <svg viewBox="0 0 140 140" fill="none">
+        <rect width="140" height="140" rx="20" fill="var(--accent-dim)"/>
+        <circle cx="70" cy="50" r="20" fill="var(--accent)"/>
+        <path d="M50 75 L90 75 L90 115 Q90 120 85 120 L55 120 Q50 120 50 115 Z" fill="var(--accent)" opacity="0.3"/>
+        <path d="M55 85 L85 85" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M55 100 L85 100" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="login-ill-title">Manage Your Gym</div>
+      <div class="login-ill-text">Track members, attendance, payments, and more — all in one powerful dashboard</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script>
+// Optional: Add client-side validation before submission
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+
+  if (!email || !pass) {
+    e.preventDefault();
+    showToast('Missing Fields', 'Please enter email and password', 'error');
+  }
+});
+
+// Initialize password toggle on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initPasswordToggle();
+});
+</script>
+</body>
+</html>

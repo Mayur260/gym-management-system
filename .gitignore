@@ -1,0 +1,65 @@
+# Git Ignore - Exclude files from version control
+
+# ─── Environment Variables ─────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ─── Dependencies ──────────────────────────────────────────
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# ─── IDE and Editor Configuration ──────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Build and Compilation ────────────────────────────────
+/dist/
+/build/
+*.tgz
+*.zip
+
+# ─── Logs and Temporary Files ─────────────────────────────
+/logs/
+*.log
+tmp/
+temp/
+
+# ─── Database Backups ──────────────────────────────────────
+*.sql.bak
+backup_*.sql
+
+# ─── OS Files ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# ─── Runtime Data ─────────────────────────────────────────
+*.pid
+*.seed
+*.pid.lock
+
+# ─── User Files ────────────────────────────────────────────
+uploads/
+user-data/
+temp-files/
+
+# ─── Testing ────────────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ─── IDE Files ──────────────────────────────────────────────
+*.code-workspace
+.vscode-test
+.vscode/settings.json
+
+# Keep these directories but ignore contents
+logs/.gitkeep

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — IronForge GMS</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+
+    <div class="page-body">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-header-left">
+          <div class="breadcrumb">
+            <span>IronForge</span>
+            <span class="breadcrumb-sep">/</span>
+            <span>Dashboard</span>
+          </div>
+          <h1 class="page-title">Good morning, Admin 👋</h1>
+          <p class="page-subtitle">Here's what's happening at IronForge today — Tuesday, 13 May 2025</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-secondary">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+            May 2025
+          </button>
+          <a href="add-member.html" class="btn btn-primary">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+            Add Member
+          </a>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon emerald">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-label">Total Members</div>
+            <div class="stat-value">128</div>
+            <div class="stat-change up">↑ 12 this month</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-label">Active Memberships</div>
+            <div class="stat-value">104</div>
+            <div class="stat-change up">↑ 8 renewed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-label">Today's Attendance</div>
+            <div class="stat-value">43</div>
+            <div class="stat-change up">↑ vs 38 yesterday</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="stat-body">
+            <div class="stat-label">Monthly Revenue</div>
+            <div class="stat-value">₹2.4L</div>
+            <div class="stat-change up">↑ 18% vs last month</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2 mb-5">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Revenue Analytics</div>
+              <div class="card-subtitle">Monthly revenue — Jan to May 2025</div>
+            </div>
+            <select class="filter-select" style="font-size:12px;padding:6px 24px 6px 10px;">
+              <option>2025</option>
+              <option>2024</option>
+            </select>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Attendance Trend</div>
+              <div class="card-subtitle">Daily check-ins — last 14 days</div>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="attendanceChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="grid-2">
+        <!-- Recent Payments -->
+        <div class="card" style="padding:0;overflow:hidden;">
+          <div class="card-header" style="padding:18px 20px;">
+            <div>
+              <div class="card-title">Recent Payments</div>
+              <div class="card-subtitle">Last 5 transactions</div>
+            </div>
+            <a href="payments.html" class="btn btn-ghost btn-sm">View all</a>
+          </div>
+          <div class="table-container" style="border:none;border-radius:0;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Plan</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:9px;"><div class="avatar avatar-emerald" style="width:28px;height:28px;font-size:10px;">AR</div>Arjun Reddy</div></td>
+                  <td>Annual</td>
+                  <td class="font-mono">₹12,000</td>
+                  <td><span class="badge badge-green">Paid</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:9px;"><div class="avatar avatar-blue" style="width:28px;height:28px;font-size:10px;">PM</div>Priya Mehta</div></td>
+                  <td>Monthly</td>
+                  <td class="font-mono">₹1,500</td>
+                  <td><span class="badge badge-green">Paid</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:9px;"><div class="avatar avatar-amber" style="width:28px;height:28px;font-size:10px;">SK</div>Sanjay Kumar</div></td>
+                  <td>Quarterly</td>
+                  <td class="font-mono">₹4,200</td>
+                  <td><span class="badge badge-amber">Pending</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:9px;"><div class="avatar avatar-red" style="width:28px;height:28px;font-size:10px;">DS</div>Divya Sharma</div></td>
+                  <td>Monthly</td>
+                  <td class="font-mono">₹1,500</td>
+                  <td><span class="badge badge-green">Paid</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:9px;"><div class="avatar avatar-purple" style="width:28px;height:28px;font-size:10px;">RV</div>Ravi Varma</div></td>
+                  <td>Annual</td>
+                  <td class="font-mono">₹12,000</td>
+                  <td><span class="badge badge-red">Overdue</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <!-- Quick Actions -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Quick Actions</div>
+            </div>
+            <div class="quick-actions">
+              <a href="add-member.html" class="qa-btn">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/></svg>
+                Add Member
+              </a>
+              <a href="attendance.html" class="qa-btn">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Mark Attendance
+              </a>
+              <a href="payments.html" class="qa-btn">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                Record Payment
+              </a>
+              <a href="memberships.html" class="qa-btn">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/></svg>
+                View Plans
+              </a>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="card" style="flex:1;">
+            <div class="card-header">
+              <div class="card-title">Recent Activity</div>
+              <span class="badge badge-blue">Live</span>
+            </div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-dot green"></div>
+                <div class="activity-text"><strong>Arjun Reddy</strong> checked in at the gym</div>
+                <div class="activity-time">09:14</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot blue"></div>
+                <div class="activity-text"><strong>Priya Mehta</strong> renewed her monthly plan</div>
+                <div class="activity-time">08:52</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot amber"></div>
+                <div class="activity-text">Payment due for <strong>Sanjay Kumar</strong> — ₹4,200</div>
+                <div class="activity-time">08:30</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot green"></div>
+                <div class="activity-text"><strong>Kiran Rao</strong> joined with Annual Plan</div>
+                <div class="activity-time">Yesterday</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot red"></div>
+                <div class="activity-text"><strong>Ravi Varma's</strong> membership expired — follow up</div>
+                <div class="activity-time">Yesterday</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Membership Distribution -->
+      <div class="grid-2 mt-5">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Membership Growth</div>
+              <div class="card-subtitle">New member joins — last 6 months</div>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="growthChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Plan Distribution</div>
+            <div class="card-subtitle">Current active subscribers</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:24px;">
+            <div class="chart-wrapper" style="height:180px;flex:1;">
+              <canvas id="planChart"></canvas>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;min-width:130px;">
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:10px;height:10px;border-radius:2px;background:#10B981;flex-shrink:0;"></div>
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--text-primary);">Annual</div>
+                  <div style="font-size:11px;color:var(--text-muted);">52 members</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:10px;height:10px;border-radius:2px;background:#3B82F6;flex-shrink:0;"></div>
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--text-primary);">Quarterly</div>
+                  <div style="font-size:11px;color:var(--text-muted);">31 members</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:10px;height:10px;border-radius:2px;background:#F59E0B;flex-shrink:0;"></div>
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--text-primary);">Monthly</div>
+                  <div style="font-size:11px;color:var(--text-muted);">21 members</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:10px;height:10px;border-radius:2px;background:#EF4444;flex-shrink:0;"></div>
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--text-primary);">Expired</div>
+                  <div style="font-size:11px;color:var(--text-muted);">24 members</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+<script>
+  buildSidebar('Dashboard');
+
+  const chartDefaults = {
+    borderRadius: 5,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1C2840',
+        borderColor: '#1E2D42',
+        borderWidth: 1,
+        titleColor: '#E8EDF5',
+        bodyColor: '#8A9BB5',
+        padding: 10,
+      }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(30,45,66,0.6)' }, ticks: { color: '#4A5E7A', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(30,45,66,0.6)' }, ticks: { color: '#4A5E7A', font: { size: 11 } } }
+    }
+  };
+
+  // Revenue
+  new Chart(document.getElementById('revenueChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        data: [180000, 210000, 195000, 225000, 240000],
+        backgroundColor: 'rgba(16,185,129,0.2)',
+        borderColor: '#10B981',
+        borderWidth: 2,
+        borderRadius: 6,
+        hoverBackgroundColor: 'rgba(16,185,129,0.4)',
+      }]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        ...chartDefaults.scales,
+        y: { ...chartDefaults.scales.y, ticks: { ...chartDefaults.scales.y.ticks, callback: v => '₹' + (v/1000) + 'K' } }
+      }
+    }
+  });
+
+  // Attendance
+  new Chart(document.getElementById('attendanceChart'), {
+    type: 'line',
+    data: {
+      labels: ['30','1','2','3','4','5','6','7','8','9','10','11','12','13'],
+      datasets: [{
+        data: [38, 42, 35, 47, 51, 38, 22, 18, 44, 48, 52, 39, 43, 43],
+        borderColor: '#3B82F6',
+        backgroundColor: 'rgba(59,130,246,0.08)',
+        borderWidth: 2,
+        tension: 0.4,
+        fill: true,
+        pointBackgroundColor: '#3B82F6',
+        pointRadius: 3,
+        pointHoverRadius: 5,
+      }]
+    },
+    options: { ...chartDefaults }
+  });
+
+  // Growth
+  new Chart(document.getElementById('growthChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      datasets: [{
+        data: [8, 14, 11, 19, 15, 12],
+        backgroundColor: 'rgba(245,158,11,0.2)',
+        borderColor: '#F59E0B',
+        borderWidth: 2,
+        borderRadius: 6,
+      }]
+    },
+    options: { ...chartDefaults }
+  });
+
+  // Plan donut
+  new Chart(document.getElementById('planChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Annual', 'Quarterly', 'Monthly', 'Expired'],
+      datasets: [{
+        data: [52, 31, 21, 24],
+        backgroundColor: ['rgba(16,185,129,0.85)','rgba(59,130,246,0.85)','rgba(245,158,11,0.85)','rgba(239,68,68,0.85)'],
+        borderColor: '#151E2D',
+        borderWidth: 3,
+        hoverOffset: 4,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1C2840',
+          borderColor: '#1E2D42',
+          borderWidth: 1,
+          titleColor: '#E8EDF5',
+          bodyColor: '#8A9BB5',
+        }
+      },
+      cutout: '68%',
+    }
+  });
+</script>
+</body>
+</html>

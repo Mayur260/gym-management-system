@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= trainer ? 'Edit Trainer' : 'Add Trainer' %> - IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<% const formTrainer = trainer || {}; %>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1><%= trainer ? 'Edit Trainer' : 'Add Trainer' %></h1>
+          <p>Manage trainer details and compensation.</p>
+        </div>
+      </section>
+      <section class="card">
+        <form class="form-grid" method="POST" action="<%= formAction || '/trainers/add' %>">
+          <div class="form-group">
+            <label>Trainer Name</label>
+            <input class="input-dark" type="text" name="trainer_name" value="<%= formTrainer.trainer_name || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Specialization</label>
+            <input class="input-dark" type="text" name="specialization" value="<%= formTrainer.specialization || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input class="input-dark" type="text" name="phone" value="<%= formTrainer.phone || '' %>" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="input-dark" type="email" name="email" value="<%= formTrainer.email || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Salary</label>
+            <input class="input-dark" type="number" step="0.01" name="salary" value="<%= formTrainer.salary || '' %>">
+          </div>
+          <div class="form-group full">
+            <div class="table-actions">
+              <button class="btn btn-primary" type="submit"><%= submitLabel || 'Save Trainer' %></button>
+              <a class="btn btn-ghost" href="/trainers">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>buildSidebar('Trainers');</script>
+</body>
+</html>

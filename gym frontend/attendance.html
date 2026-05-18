@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance — IronForge GMS</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+
+      <div class="page-header">
+        <div class="page-header-left">
+          <div class="breadcrumb"><span>IronForge</span><span class="breadcrumb-sep">/</span><span>Attendance</span></div>
+          <h1 class="page-title">Attendance</h1>
+          <p class="page-subtitle">Track daily check-ins and member presence</p>
+        </div>
+        <button class="btn btn-primary" data-modal-open="markModal">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Mark Attendance
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid" style="margin-bottom:24px;">
+        <div class="stat-card">
+          <div class="stat-icon emerald"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">Today's Check-ins</div>
+            <div class="stat-value">43</div>
+            <div class="stat-change up">↑ 5 vs yesterday</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">Present Now</div>
+            <div class="stat-value">18</div>
+            <div class="stat-change up">● Live count</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">This Week</div>
+            <div class="stat-value">247</div>
+            <div class="stat-change up">↑ 12% avg</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg></div>
+          <div class="stat-body">
+            <div class="stat-label">Absent Today</div>
+            <div class="stat-value">85</div>
+            <div class="stat-change down">↓ of 128 total</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="search-box-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg></span>
+          <input type="text" id="attSearch" placeholder="Search member name...">
+        </div>
+        <input type="date" id="dateFilter" class="filter-select" style="padding:9px 12px;" value="2025-05-13">
+        <select class="filter-select" id="statusFilter">
+          <option value="">All Status</option>
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+          <option value="Late">Late</option>
+        </select>
+        <div class="toolbar-end">
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Report Exported','Attendance sheet downloaded.')">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            Export
+          </button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container">
+        <table id="attTable">
+          <thead>
+            <tr>
+              <th>Member</th>
+              <th>Member ID</th>
+              <th>Plan</th>
+              <th>Check-in Time</th>
+              <th>Check-out Time</th>
+              <th>Duration</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="attTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span id="attCount">Showing 1–15 of 128 members</span>
+        <div class="pagination-pages">
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">…</button>
+          <button class="page-btn">9</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Mark Attendance Modal -->
+<div class="modal-overlay" id="markModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <span class="modal-title">Mark Attendance</span>
+      <button class="modal-close" data-modal-close="markModal"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid single">
+        <div class="form-group">
+          <label>Member</label>
+          <select class="form-select">
+            <option value="">Select member</option>
+            <option>Arjun Reddy</option><option>Priya Mehta</option><option>Kiran Rao</option>
+            <option>Meena Iyer</option><option>Deepak Nair</option><option>Sneha Patil</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-input" value="2025-05-13">
+        </div>
+        <div class="form-group">
+          <label>Check-in Time</label>
+          <input type="time" class="form-input" value="09:00">
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select class="form-select">
+            <option>Present</option>
+            <option>Late</option>
+            <option>Absent</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="markModal">Cancel</button>
+      <button class="btn btn-primary" onclick="markAttendance()">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+<script>
+buildSidebar('Attendance');
+
+const avatarCols = ['avatar-emerald','avatar-blue','avatar-amber','avatar-red','avatar-purple'];
+function col(n){ let h=0; for(let c of n) h=c.charCodeAt(0)+((h<<5)-h); return avatarCols[Math.abs(h)%avatarCols.length]; }
+function ini(n){ return n.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase(); }
+
+const records = [
+  { name:'Arjun Reddy',   id:'MBR001', plan:'Annual',    cin:'06:15', cout:'07:45', dur:'1h 30m', status:'Present' },
+  { name:'Kiran Rao',     id:'MBR006', plan:'Annual',    cin:'06:30', cout:'08:00', dur:'1h 30m', status:'Present' },
+  { name:'Meena Iyer',    id:'MBR007', plan:'Monthly',   cin:'07:00', cout:'08:20', dur:'1h 20m', status:'Present' },
+  { name:'Deepak Nair',   id:'MBR008', plan:'Quarterly', cin:'07:15', cout:'08:45', dur:'1h 30m', status:'Present' },
+  { name:'Sneha Patil',   id:'MBR009', plan:'Annual',    cin:'07:30', cout:'09:00', dur:'1h 30m', status:'Present' },
+  { name:'Rohan Gupta',   id:'MBR012', plan:'Annual',    cin:'08:00', cout:'09:15', dur:'1h 15m', status:'Present' },
+  { name:'Priya Mehta',   id:'MBR002', plan:'Monthly',   cin:'09:05', cout:'—',     dur:'—',      status:'Late' },
+  { name:'Sanjay Kumar',  id:'MBR003', plan:'Quarterly', cin:'—',     cout:'—',     dur:'—',      status:'Absent' },
+  { name:'Divya Sharma',  id:'MBR004', plan:'Monthly',   cin:'—',     cout:'—',     dur:'—',      status:'Absent' },
+  { name:'Ravi Varma',    id:'MBR005', plan:'Annual',    cin:'—',     cout:'—',     dur:'—',      status:'Absent' },
+  { name:'Anil Sharma',   id:'MBR010', plan:'Monthly',   cin:'—',     cout:'—',     dur:'—',      status:'Absent' },
+  { name:'Lakshmi Naidu', id:'MBR011', plan:'Quarterly', cin:'—',     cout:'—',     dur:'—',      status:'Absent' },
+  { name:'Vijay Krishna', id:'MBR013', plan:'Monthly',   cin:'06:45', cout:'08:00', dur:'1h 15m', status:'Present' },
+  { name:'Nisha Patel',   id:'MBR014', plan:'Quarterly', cin:'07:50', cout:'09:10', dur:'1h 20m', status:'Present' },
+  { name:'Ramesh Babu',   id:'MBR015', plan:'Annual',    cin:'08:30', cout:'—',     dur:'—',      status:'Present' },
+];
+
+const statusBadge = { Present:'badge-green', Late:'badge-amber', Absent:'badge-red' };
+
+function renderAtt(data) {
+  const tbody = document.getElementById('attTbody');
+  tbody.innerHTML = data.map(r => `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="avatar ${col(r.name)}" style="width:30px;height:30px;font-size:10px;">${ini(r.name)}</div>
+          <span style="font-weight:600;">${r.name}</span>
+        </div>
+      </td>
+      <td class="font-mono" style="font-size:12px;color:var(--text-muted);">${r.id}</td>
+      <td><span class="badge badge-blue">${r.plan}</span></td>
+      <td class="font-mono" style="font-size:12px;">${r.cin}</td>
+      <td class="font-mono" style="font-size:12px;">${r.cout}</td>
+      <td style="font-size:12px;color:var(--text-muted);">${r.dur}</td>
+      <td><span class="badge ${statusBadge[r.status]}">${r.status}</span></td>
+      <td>
+        <button class="btn btn-ghost btn-sm btn-icon" title="Edit" onclick="showToast('Record Updated','Attendance record saved.')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+        </button>
+      </td>
+    </tr>
+  `).join('');
+  document.getElementById('attCount').textContent = `Showing 1–${data.length} of ${data.length} records`;
+}
+
+renderAtt(records);
+
+function applyFilter() {
+  const q  = document.getElementById('attSearch').value.toLowerCase();
+  const st = document.getElementById('statusFilter').value;
+  renderAtt(records.filter(r =>
+    (!q  || r.name.toLowerCase().includes(q)) &&
+    (!st || r.status === st)
+  ));
+}
+
+document.getElementById('attSearch').addEventListener('input', applyFilter);
+document.getElementById('statusFilter').addEventListener('change', applyFilter);
+
+function markAttendance() {
+  closeModal('markModal');
+  showToast('Attendance Marked', 'Record saved successfully.');
+}
+
+document.querySelectorAll('.page-btn').forEach(b => b.addEventListener('click', function(){
+  document.querySelectorAll('.page-btn').forEach(x=>x.classList.remove('active'));
+  this.classList.add('active');
+}));
+</script>
+</body>
+</html>

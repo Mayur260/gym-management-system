@@ -1,0 +1,81 @@
+<!-- EJS Template for Settings
+Updated path: views/settings.ejs
+Update all CSS/JS paths to use /css and /js prefixes 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1>Settings</h1>
+          <p>Manage system preferences and profile information.</p>
+        </div>
+        <button class="btn btn-primary" type="button">Save Changes</button>
+      </section>
+
+      <section class="card">
+        <form class="form-grid">
+          <div class="form-group">
+            <label>Gym Name</label>
+            <input class="input-dark" type="text" placeholder="IronForge Gym" />
+          </div>
+          <div class="form-group">
+            <label>Support Email</label>
+            <input class="input-dark" type="email" placeholder="support@ironforge.com" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input class="input-dark" type="text" placeholder="+91 9876543210" />
+          </div>
+          <div class="form-group">
+            <label>Timezone</label>
+            <select class="select-dark">
+              <option>Asia/Kolkata</option>
+              <option>UTC</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Address</label>
+            <textarea class="textarea-dark" rows="3" placeholder="Gym address"></textarea>
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input class="input-dark" type="password" placeholder="••••••••" />
+          </div>
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input class="input-dark" type="password" placeholder="••••••••" />
+          </div>
+          <div class="form-group full">
+            <div class="table-actions">
+              <button class="btn btn-primary" type="submit">Update Settings</button>
+              <button class="btn btn-ghost" type="reset">Reset</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>
+buildSidebar('Settings');
+initPasswordToggle();
+</script>
+</body>
+</html>

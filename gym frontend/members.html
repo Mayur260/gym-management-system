@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members — IronForge GMS</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+
+      <div class="page-header">
+        <div class="page-header-left">
+          <div class="breadcrumb"><span>IronForge</span><span class="breadcrumb-sep">/</span><span>Members</span></div>
+          <h1 class="page-title">Members</h1>
+          <p class="page-subtitle">Manage all gym members, plans, and statuses</p>
+        </div>
+        <a href="add-member.html" class="btn btn-primary">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+          Add Member
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+        <div class="stat-card"><div class="stat-icon emerald"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg></div><div class="stat-body"><div class="stat-label">Total</div><div class="stat-value">128</div></div></div>
+        <div class="stat-card"><div class="stat-icon blue"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div><div class="stat-body"><div class="stat-label">Active</div><div class="stat-value">104</div></div></div>
+        <div class="stat-card"><div class="stat-icon amber"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg></div><div class="stat-body"><div class="stat-label">Expiring Soon</div><div class="stat-value">14</div></div></div>
+        <div class="stat-card"><div class="stat-icon red"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg></div><div class="stat-body"><div class="stat-label">Expired</div><div class="stat-value">24</div></div></div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="search-box-icon"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg></span>
+          <input type="text" id="memberSearch" placeholder="Search by name, phone, email...">
+        </div>
+        <select class="filter-select" id="planFilter">
+          <option value="">All Plans</option>
+          <option>Monthly</option>
+          <option>Quarterly</option>
+          <option>Annual</option>
+        </select>
+        <select class="filter-select" id="statusFilter">
+          <option value="">All Status</option>
+          <option>Active</option>
+          <option>Expiring</option>
+          <option>Expired</option>
+        </select>
+        <div class="toolbar-end">
+          <button class="btn btn-secondary btn-sm">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            Export
+          </button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container">
+        <table id="membersTable">
+          <thead>
+            <tr>
+              <th>Member</th>
+              <th>Phone</th>
+              <th>Plan</th>
+              <th>Trainer</th>
+              <th>Join Date</th>
+              <th>Expires</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="membersTbody">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span>Showing 1–12 of 128 members</span>
+        <div class="pagination-pages">
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">…</button>
+          <button class="page-btn">11</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Remove Member</span>
+      <button class="modal-close" data-modal-close="deleteModal"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;">Are you sure you want to remove <strong id="deleteTargetName" style="color:var(--text-primary);"></strong> from the system? This action cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="deleteModal">Cancel</button>
+      <button class="btn btn-danger" id="confirmDelete">Remove Member</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+<script>
+buildSidebar('Members');
+
+const members = [
+  { id:1, name:'Arjun Reddy',    phone:'9876543210', plan:'Annual',    trainer:'Suresh Kumar',   join:'2024-06-01', exp:'2025-06-01', status:'Active' },
+  { id:2, name:'Priya Mehta',    phone:'9812345678', plan:'Monthly',   trainer:'Anita Desai',    join:'2025-04-15', exp:'2025-05-15', status:'Expiring' },
+  { id:3, name:'Sanjay Kumar',   phone:'9823456789', plan:'Quarterly', trainer:'Rajesh Pillai',  join:'2025-02-01', exp:'2025-05-01', status:'Expired' },
+  { id:4, name:'Divya Sharma',   phone:'9834567890', plan:'Monthly',   trainer:'Suresh Kumar',   join:'2025-04-01', exp:'2025-05-01', status:'Expired' },
+  { id:5, name:'Ravi Varma',     phone:'9845678901', plan:'Annual',    trainer:'Anita Desai',    join:'2024-05-20', exp:'2025-05-20', status:'Expiring' },
+  { id:6, name:'Kiran Rao',      phone:'9856789012', plan:'Annual',    trainer:'Rajesh Pillai',  join:'2025-05-12', exp:'2026-05-12', status:'Active' },
+  { id:7, name:'Meena Iyer',     phone:'9867890123', plan:'Monthly',   trainer:'Suresh Kumar',   join:'2025-05-01', exp:'2025-06-01', status:'Active' },
+  { id:8, name:'Deepak Nair',    phone:'9878901234', plan:'Quarterly', trainer:'Anita Desai',    join:'2025-03-01', exp:'2025-06-01', status:'Active' },
+  { id:9, name:'Sneha Patil',    phone:'9889012345', plan:'Annual',    trainer:'Rajesh Pillai',  join:'2025-01-10', exp:'2026-01-10', status:'Active' },
+  { id:10,name:'Anil Sharma',    phone:'9890123456', plan:'Monthly',   trainer:'Suresh Kumar',   join:'2025-04-20', exp:'2025-05-20', status:'Expiring' },
+  { id:11,name:'Lakshmi Naidu',  phone:'9801234567', plan:'Quarterly', trainer:'Anita Desai',    join:'2025-02-15', exp:'2025-05-15', status:'Expiring' },
+  { id:12,name:'Rohan Gupta',    phone:'9811234567', plan:'Annual',    trainer:'Rajesh Pillai',  join:'2024-08-01', exp:'2025-08-01', status:'Active' },
+];
+
+const avatarCols = ['avatar-emerald','avatar-blue','avatar-amber','avatar-red','avatar-purple'];
+function getColor(name) {
+  let h = 0; for (let c of name) h = c.charCodeAt(0) + ((h<<5)-h);
+  return avatarCols[Math.abs(h) % avatarCols.length];
+}
+function inits(n) { return n.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase(); }
+function statusBadge(s) {
+  const map = { Active:'badge-green', Expiring:'badge-amber', Expired:'badge-red' };
+  return `<span class="badge ${map[s]||'badge-gray'}">${s}</span>`;
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('membersTbody');
+  if (!data.length) { tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-muted);">No members found</td></tr>`; return; }
+  tbody.innerHTML = data.map(m => `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="avatar ${getColor(m.name)}" style="width:32px;height:32px;font-size:11px;">${inits(m.name)}</div>
+          <div>
+            <div style="font-weight:600;color:var(--text-primary);font-size:13px;">${m.name}</div>
+            <div style="font-size:11px;color:var(--text-muted);">#MBR${String(m.id).padStart(3,'0')}</div>
+          </div>
+        </div>
+      </td>
+      <td class="font-mono" style="font-size:12px;">${m.phone}</td>
+      <td><span class="badge badge-blue">${m.plan}</span></td>
+      <td style="font-size:12px;">${m.trainer}</td>
+      <td style="font-size:12px;color:var(--text-muted);">${m.join}</td>
+      <td style="font-size:12px;color:var(--text-muted);">${m.exp}</td>
+      <td>${statusBadge(m.status)}</td>
+      <td>
+        <div class="td-actions">
+          <a href="add-member.html" class="btn btn-ghost btn-icon btn-sm" title="Edit">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+          </a>
+          <button class="btn btn-ghost btn-icon btn-sm" title="Delete" onclick="askDelete('${m.name}', ${m.id})">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" style="color:var(--danger);"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+          </button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+renderTable(members);
+
+let deleteTarget = null;
+function askDelete(name, id) {
+  deleteTarget = id;
+  document.getElementById('deleteTargetName').textContent = name;
+  openModal('deleteModal');
+}
+
+document.getElementById('confirmDelete').addEventListener('click', () => {
+  closeModal('deleteModal');
+  showToast('Member Removed', 'The member has been removed successfully.');
+});
+
+// Search & filter
+function applyFilters() {
+  const q      = document.getElementById('memberSearch').value.toLowerCase();
+  const plan   = document.getElementById('planFilter').value;
+  const status = document.getElementById('statusFilter').value;
+  const filtered = members.filter(m =>
+    (!q || m.name.toLowerCase().includes(q) || m.phone.includes(q)) &&
+    (!plan   || m.plan === plan) &&
+    (!status || m.status === status)
+  );
+  renderTable(filtered);
+}
+
+document.getElementById('memberSearch').addEventListener('input', applyFilters);
+document.getElementById('planFilter').addEventListener('change', applyFilters);
+document.getElementById('statusFilter').addEventListener('change', applyFilters);
+
+// Pagination
+document.querySelectorAll('.page-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

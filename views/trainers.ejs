@@ -1,0 +1,91 @@
+<!-- EJS Template for Trainers
+Updated path: views/trainers.ejs
+Update all CSS/JS paths to use /css and /js prefixes 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trainers — IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1>Trainers</h1>
+          <p>Manage trainer profiles and assignments.</p>
+        </div>
+        <a href="/trainers/add" class="btn btn-primary">+ Add Trainer</a>
+      </section>
+
+      <section class="card">
+        <div class="toolbar">
+          <div class="search-group">
+            <input class="input-dark" type="text" placeholder="Search trainers..." />
+            <select class="select-dark">
+              <option>All Specializations</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="table-wrap">
+        <table class="dashboard-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Specialization</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Salary</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (trainers && trainers.length > 0) { %>
+              <% trainers.forEach(trainer => { %>
+                <tr>
+                  <td><%= trainer.trainer_name %></td>
+                  <td><%= trainer.specialization || '-' %></td>
+                  <td><%= trainer.phone || '-' %></td>
+                  <td><%= trainer.email || '-' %></td>
+                  <td><%= trainer.salary ?? '-' %></td>
+                  <td>
+                    <div class="table-actions">
+                      <a href="/trainers/edit/<%= trainer.id %>" class="btn btn-edit">Edit</a>
+                      <form action="/trainers/delete/<%= trainer.id %>" method="POST">
+                        <button type="submit" class="btn btn-delete">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } else { %>
+              <tr>
+                <td colspan="6">No trainers found.</td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>
+buildSidebar('Trainers');
+</script>
+</body>
+</html>

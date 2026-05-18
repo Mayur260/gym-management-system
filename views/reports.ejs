@@ -1,0 +1,146 @@
+<!-- EJS Template for Reports
+Updated path: views/reports.ejs
+Update all CSS/JS paths to use /css and /js prefixes 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports — IronForge GMS</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app-wrapper">
+  <div id="sidebar-slot"></div>
+  <main class="main-content">
+    <div id="topbar-slot"></div>
+    <div class="page-body">
+      <section class="page-header">
+        <div class="page-title">
+          <h1>Reports</h1>
+          <p>View gym performance metrics and trends.</p>
+        </div>
+        <button class="btn btn-primary" type="button">Export Report</button>
+      </section>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Members</h3>
+          <p><%= stats.totalMembers %></p>
+        </div>
+        <div class="stat-card">
+          <h3>Active Memberships</h3>
+          <p><%= stats.activeMemberships %></p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Trainers</h3>
+          <p><%= stats.totalTrainers %></p>
+        </div>
+        <div class="stat-card">
+          <h3>Monthly Revenue</h3>
+          <p><%= stats.monthlyRevenue %></p>
+        </div>
+        <div class="stat-card">
+          <h3>Pending Payments</h3>
+          <p><%= stats.pendingPayments %></p>
+        </div>
+        <div class="stat-card">
+          <h3>Today's Attendance</h3>
+          <p><%= stats.todayAttendanceCount %></p>
+        </div>
+      </div>
+
+      <section class="card">
+        <div class="toolbar">
+          <div class="search-group">
+            <input class="input-dark" type="text" placeholder="Search KPI..." />
+            <select class="select-dark">
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+              <option>Last 6 Months</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Monthly Revenue</h3>
+          <canvas id="monthlyRevenueChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Attendance Trend</h3>
+          <canvas id="attendanceTrendChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Membership Distribution</h3>
+          <canvas id="membershipDistributionChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/js/main.js"></script>
+<script src="/js/nav.js"></script>
+<script>
+buildSidebar('Reports');
+
+const monthlyRevenueData = <%- JSON.stringify(monthlyRevenueChart || { labels: [], values: [] }) %>;
+const attendanceTrendData = <%- JSON.stringify(attendanceTrendChart || { labels: [], values: [] }) %>;
+const membershipDistributionData = <%- JSON.stringify(membershipDistributionChart || { labels: [], values: [] }) %>;
+
+new Chart(document.getElementById('monthlyRevenueChart'), {
+  type: 'bar',
+  data: {
+    labels: monthlyRevenueData.labels,
+    datasets: [{
+      label: 'Revenue',
+      data: monthlyRevenueData.values
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
+});
+
+new Chart(document.getElementById('attendanceTrendChart'), {
+  type: 'line',
+  data: {
+    labels: attendanceTrendData.labels,
+    datasets: [{
+      label: 'Attendance Count',
+      data: attendanceTrendData.values,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
+});
+
+new Chart(document.getElementById('membershipDistributionChart'), {
+  type: 'doughnut',
+  data: {
+    labels: membershipDistributionData.labels,
+    datasets: [{
+      label: 'Members',
+      data: membershipDistributionData.values
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
+});
+</script>
+</body>
+</html>
