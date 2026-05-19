@@ -7,7 +7,7 @@ const GYM_NAV = [
     section: 'Main',
     items: [
       { label: 'Dashboard',   page: '/dashboard',     icon: iconGrid(),     badge: '' },
-      { label: 'Members',     page: '/members',       icon: iconUsers(),    badge: '128' },
+      { label: 'Members',     page: '/members',       icon: iconUsers(),    badge: '10' },
       { label: 'Trainers',    page: '/trainers',      icon: iconDumbbell(), badge: '' },
       { label: 'Memberships', page: '/memberships',   icon: iconCard(),     badge: '' },
     ]
